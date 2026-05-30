@@ -1,0 +1,282 @@
+:root {
+  --bg-color: #0a0e17;
+  --surface: #111827;
+  --surface-light: #1e293b;
+  --primary: #3b82f6;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  
+  --color-theft: #ef4444;
+  --color-suspicious: #f59e0b;
+  --color-accident: #f97316;
+  --color-vandalism: #a855f7;
+  --color-other: #3b82f6;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  overflow: hidden; /* App is full screen */
+}
+
+/* Map view layout — prevents header/search/sidebar overlap */
+.map-shell {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.map-topbar {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.map-left-column {
+  position: absolute;
+  top: 92px;
+  left: 20px;
+  width: 340px;
+  bottom: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.map-left-column > * {
+  pointer-events: auto;
+}
+
+.map-search-panel {
+  flex-shrink: 0;
+  padding: 14px 16px;
+  position: relative;
+  z-index: 30;
+  overflow: visible;
+  pointer-events: auto;
+}
+
+.radius-chip {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-muted);
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.radius-chip:hover:not(:disabled) {
+  background: rgba(59, 130, 246, 0.15);
+  color: #93c5fd;
+}
+
+.radius-chip-active {
+  background: rgba(59, 130, 246, 0.25);
+  border-color: rgba(59, 130, 246, 0.6);
+  color: #93c5fd;
+}
+
+.radius-chip:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.map-sidebar-panel {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.report-form-panel {
+  z-index: 2000;
+}
+
+.address-suggestions-portal,
+.address-autocomplete-dropdown {
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7);
+}
+.address-autocomplete-dropdown button:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.incident-source-link:hover {
+  background: rgba(34, 197, 94, 0.2);
+  color: #bbf7d0;
+}
+
+/* Your-address pin on the map */
+.search-location-marker {
+  background: transparent;
+  border: none;
+}
+.search-location-pin {
+  width: 28px;
+  height: 28px;
+  background: #3b82f6;
+  border: 3px solid #fff;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.6);
+  position: relative;
+  left: 2px;
+  top: 2px;
+}
+.search-location-pin::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.draft-report-marker {
+  background: transparent;
+  border: none;
+}
+.draft-report-pin {
+  width: 20px;
+  height: 20px;
+  background: #f97316;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 10px rgba(249, 115, 22, 0.7);
+}
+
+@keyframes slideIn {
+  from { transform: translateX(120%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+  background: rgba(17, 24, 39, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+}
+
+/* Map Overrides */
+.leaflet-container {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-color) !important;
+  z-index: 1; /* Map is base layer */
+}
+
+/* Custom pulsing map markers */
+.pulse-marker {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.pulse-marker::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  opacity: 0;
+  animation: pulse 2s infinite ease-out;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.5); opacity: 0.8; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* Incident Specific Colors */
+.marker-theft { background-color: var(--color-theft); border: 2px solid #fff; }
+.marker-theft::after { background-color: var(--color-theft); }
+
+.marker-suspicious { background-color: var(--color-suspicious); border: 2px solid #fff; }
+.marker-suspicious::after { background-color: var(--color-suspicious); }
+
+.marker-accident { background-color: var(--color-accident); border: 2px solid #fff; }
+.marker-accident::after { background-color: var(--color-accident); }
+
+.marker-vandalism { background-color: var(--color-vandalism); border: 2px solid #fff; }
+.marker-vandalism::after { background-color: var(--color-vandalism); }
+
+.marker-other { background-color: var(--color-other); border: 2px solid #fff; }
+.marker-other::after { background-color: var(--color-other); }
+
+/* Transit stop markers */
+.transit-stop-marker {
+  background: transparent;
+  border: none;
+}
+.transit-stop-inner {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(17, 24, 39, 0.9);
+  border: 2px solid #fbbf24;
+  border-radius: 50%;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Address search suggestions */
+.address-suggestions {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+}
+.address-suggestions li button:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Leaflet Dark Theme Overrides for Popups */
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background: rgba(17, 24, 39, 0.9) !important;
+  backdrop-filter: blur(8px);
+  color: var(--text-main) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5) !important;
+}
+.leaflet-popup-content {
+  margin: 12px 16px !important;
+}
+.leaflet-popup-close-button {
+  color: var(--text-muted) !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}

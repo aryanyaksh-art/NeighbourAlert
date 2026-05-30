@@ -1,0 +1,14 @@
+{
+  "name": "neighbouralert",
+  "version": "1.0.0",
+  "description": "NeighbourAlert Monorepo",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "seed": "cd server && npm run seed"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.0"
+  }
+}

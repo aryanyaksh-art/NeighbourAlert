@@ -1,0 +1,17 @@
+[
+  { "id": "1113", "name": "Bramalea GO Station", "lat": 43.7152, "lng": -79.6901 },
+  { "id": "gateway", "name": "Brampton Gateway Terminal", "lat": 43.6668, "lng": -79.7582 },
+  { "id": "downtown", "name": "Downtown Brampton Terminal", "lat": 43.6854, "lng": -79.7621 },
+  { "id": "shoppers", "name": "Shoppers World", "lat": 43.6938, "lng": -79.7615 },
+  { "id": "bramalea-city", "name": "Bramalea City Centre", "lat": 43.7318, "lng": -79.7204 },
+  { "id": "mount-pleasant", "name": "Mount Pleasant GO", "lat": 43.7586, "lng": -79.8294 },
+  { "id": "sandalwood", "name": "Sandalwood Pkwy & Hurontario", "lat": 43.7345, "lng": -79.7321 },
+  { "id": "kennedy-bovaird", "name": "Kennedy Rd & Bovaird Dr", "lat": 43.7118, "lng": -79.7849 },
+  { "id": "chinguacousy", "name": "Chinguacousy Park", "lat": 43.7182, "lng": -79.7224 },
+  { "id": "queen-main", "name": "Queen St & Main St", "lat": 43.6856, "lng": -79.7593 },
+  { "id": "steeles-zum", "name": "Züm Steeles Station", "lat": 43.7589, "lng": -79.7256 },
+  { "id": "humber-college", "name": "Humber College (Brampton)", "lat": 43.7286, "lng": -79.8012 },
+  { "id": "heart-lake", "name": "Heart Lake Rd & Bovaird", "lat": 43.7021, "lng": -79.8123 },
+  { "id": "gore-mayfield", "name": "Goreway & Mayfield", "lat": 43.7488, "lng": -79.6789 },
+  { "id": "claireville", "name": "Claireville Conservation", "lat": 43.7421, "lng": -79.6512 }
+]
